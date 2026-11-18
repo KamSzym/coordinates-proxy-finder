@@ -15,9 +15,9 @@ from main_proxies_finder.proxies_finder_main import proxy_finder
         2. number_of_closest_matches: number (int) of closest matches to retrieve for each selected observation.
         3. selected_index: list of selected indices corresponding to the entries for 
                         which you want to find the nearest matches.
-        4. visualisation: visualisation flag as number (int), with
-            1 = yes, show me results in my browser plotted on the Earth's map
-            any other number (int) = no
+        4. visualisation: visualisation flag as boolean, with
+            True = yes, show me results in my browser plotted on the Earth's map
+            False = no
 
 """
 """
@@ -43,7 +43,7 @@ from main_proxies_finder.proxies_finder_main import proxy_finder
 dataframe = pd.DataFrame()
 number_of_closest_matches = type[int]
 selected_index = type[list]
-visualisation = type[int]
+visualisation = type[bool]
 
 if __name__ == '__main__':
     df_with_proxies = proxy_finder(dataframe, number_of_closest_matches, selected_index, visualisation)

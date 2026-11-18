@@ -7,7 +7,7 @@ from geopy.distance import distance
 from scipy.optimize import linear_sum_assignment
 
 
-def proxy_finder(dataframe: pd.DataFrame, number_of_closest_matches: int, selected_index: list, visualisation: int) -> pd.DataFrame:
+def proxy_finder(dataframe: pd.DataFrame, number_of_closest_matches: int, selected_index: list, visualisation: bool) -> pd.DataFrame:
     # --------------------------------------------------
     # 1. Clean data, select a unit, visualise
     # --------------------------------------------------
@@ -25,8 +25,8 @@ def proxy_finder(dataframe: pd.DataFrame, number_of_closest_matches: int, select
     if not isinstance(selected_index, list):
         raise TypeError("'selected_index' must be of type list")
 
-    if not isinstance(visualisation, int):
-        raise TypeError("'visualisation' must be of type int")
+    if not isinstance(visualisation, bool):
+        raise TypeError("'visualisation' must be of type boolean")
 
     dataframe = dataframe[["lon", "lat"]].copy().apply(pd.to_numeric, errors="coerce")
 
@@ -62,7 +62,7 @@ def proxy_finder(dataframe: pd.DataFrame, number_of_closest_matches: int, select
     # --------------------------------------------------
 
     print(f"Selected coordinate(s):\n{df_sample}") # Selected coordinates
-    if visualisation == 1:
+    if visualisation:
         # figure, interactive, spotlighting spatial position of both in-sample and out of sample coordinates
         fig = px.scatter_map(
             df_out,
@@ -214,7 +214,7 @@ def proxy_finder(dataframe: pd.DataFrame, number_of_closest_matches: int, select
     # 2.2. Visualise (greedy)
     # --------------------------------------------------
 
-    if visualisation == 1:
+    if visualisation:
         df_out_vis_greedy = (
             df_out[~df_out.index.isin(used_indices)]
             .copy()
@@ -427,7 +427,7 @@ def proxy_finder(dataframe: pd.DataFrame, number_of_closest_matches: int, select
     # 3.3. Visualise (final, globally optimal)
     # --------------------------------------------------
 
-    if visualisation == 1:
+    if visualisation:
         df_out_vis_hun = (
             df_out[~df_out.og_index.isin(used_indices_hun)]
             .copy()
