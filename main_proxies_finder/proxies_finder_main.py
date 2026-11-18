@@ -9,7 +9,7 @@ from scipy.optimize import linear_sum_assignment
 
 def proxy_finder(dataframe: pd.DataFrame, number_of_closest_matches: int, selected_index: list, visualisation: bool) -> pd.DataFrame:
     # --------------------------------------------------
-    # 1. Clean data, select a unit, visualise
+    # 1. Clean data, select unit(s), visualise
     # --------------------------------------------------
 
     # --------------------------------------------------
